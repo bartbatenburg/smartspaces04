@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ogo:schematic xmlns:ogo="https://beerbach.me/project/oregano/ns/v1">
   <ogo:author>sven</ogo:author>
-  <ogo:title>(null)</ogo:title>
+  <ogo:title>TENS-controller.oregano</ogo:title>
   <ogo:version>(null)</ogo:version>
   <ogo:comments/>
   <ogo:grid>
@@ -50,6 +50,34 @@
     </ogo:noise>
   </ogo:simulation-settings>
   <ogo:parts>
+    <ogo:part>
+      <ogo:rotation>90</ogo:rotation>
+      <ogo:name>VDC</ogo:name>
+      <ogo:library>Default</ogo:library>
+      <ogo:symbol>VDC</ogo:symbol>
+      <ogo:position>(790 290)</ogo:position>
+      <ogo:properties>
+        <ogo:property>
+          <ogo:name>Refdes</ogo:name>
+          <ogo:value>V1</ogo:value>
+        </ogo:property>
+        <ogo:property>
+          <ogo:name>DC</ogo:name>
+          <ogo:value>5</ogo:value>
+        </ogo:property>
+        <ogo:property>
+          <ogo:name>Template</ogo:name>
+          <ogo:value>V_@refdes %1 %2 dc @DC</ogo:value>
+        </ogo:property>
+      </ogo:properties>
+      <ogo:labels>
+        <ogo:label>
+          <ogo:name>Reference designator</ogo:name>
+          <ogo:text>@refdes</ogo:text>
+          <ogo:position>(25 10)</ogo:position>
+        </ogo:label>
+      </ogo:labels>
+    </ogo:part>
     <ogo:part>
       <ogo:rotation>0</ogo:rotation>
       <ogo:name>Relay 1P1T</ogo:name>
@@ -108,34 +136,6 @@
           <ogo:name>Model</ogo:name>
           <ogo:text>@model</ogo:text>
           <ogo:position>(15 0)</ogo:position>
-        </ogo:label>
-      </ogo:labels>
-    </ogo:part>
-    <ogo:part>
-      <ogo:rotation>90</ogo:rotation>
-      <ogo:name>VDC</ogo:name>
-      <ogo:library>Default</ogo:library>
-      <ogo:symbol>VDC</ogo:symbol>
-      <ogo:position>(790 290)</ogo:position>
-      <ogo:properties>
-        <ogo:property>
-          <ogo:name>Refdes</ogo:name>
-          <ogo:value>V1</ogo:value>
-        </ogo:property>
-        <ogo:property>
-          <ogo:name>DC</ogo:name>
-          <ogo:value>1.0</ogo:value>
-        </ogo:property>
-        <ogo:property>
-          <ogo:name>Template</ogo:name>
-          <ogo:value>V_@refdes %1 %2 dc @DC</ogo:value>
-        </ogo:property>
-      </ogo:properties>
-      <ogo:labels>
-        <ogo:label>
-          <ogo:name>Reference designator</ogo:name>
-          <ogo:text>@refdes</ogo:text>
-          <ogo:position>(25 10)</ogo:position>
         </ogo:label>
       </ogo:labels>
     </ogo:part>
