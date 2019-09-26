@@ -3,8 +3,8 @@ from shocker import Shocker
 
 app = Flask(__name__)
 channels = {
-    1: Shocker(14),
-    2: Shocker(15)
+    '1': Shocker(14),
+    '2': Shocker(15)
 }
 
 
