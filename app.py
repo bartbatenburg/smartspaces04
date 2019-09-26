@@ -19,6 +19,7 @@ def pulse_action(channel):
         duration = 2
 
     shocker.pulse(duration)
+    return '{"status":"okay"}'
 
 
 if __name__ == '__main__':
