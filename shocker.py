@@ -2,7 +2,7 @@ from gpiozero import LED
 from asyncio import new_event_loop, set_event_loop
 
 loop = new_event_loop()
-set_event_loop(loop)
+
 
 
 class Shocker:
@@ -23,10 +23,6 @@ class Shocker:
         self.led.on()
 
     def pulse(self, seconds=2):
-        def db():
-            print("CB")
-            self.off()
-
         print("Loop status: " + ("Running" if loop.is_running else "Closed"))
         self.on()
-        loop.call_later(seconds, db)
+        loop.call_later(seconds, self.off)
