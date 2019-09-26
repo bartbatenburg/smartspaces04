@@ -17,6 +17,8 @@ def pulse_action(channel):
     duration = request.args.get('duration')
     if duration is None:
         duration = 2
+    else:
+        duration = float(duration)
 
     shocker.pulse(duration)
     return '{"status":"okay"}'
