@@ -44,5 +44,14 @@ def off_action(channel):
     return '{"status":"okay"}'
 
 
+@app.route('/gpio/<channel>')
+def status_action(channel):
+    shocker = channels[channel]
+    if shocker is None:
+        return '{"error":"shocker not found"}'
+
+    return '{"status":%s}' % ("true" if shocker.state else "false")
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
