@@ -23,6 +23,10 @@ class Shocker:
         self.led.on()
 
     def pulse(self, seconds=2):
+        def db():
+            print("CB")
+            self.off()
+
         print("Loop status: " + ("Running" if loop.is_running else "Closed"))
         self.on()
-        loop.call_later(seconds, self.off)
+        loop.call_later(seconds, db)
