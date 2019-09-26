@@ -20,7 +20,7 @@ def pulse_action(channel):
     else:
         duration = float(duration)
 
-    shocker.pulse(duration)
+    shocker.async_pulse(duration)
     return '{"status":"okay"}'
 
 

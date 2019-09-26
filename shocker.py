@@ -1,9 +1,6 @@
 from gpiozero import LED
-from asyncio import new_event_loop, set_event_loop
-
-loop = new_event_loop()
-
-
+from time import sleep
+from threading import Thread
 
 class Shocker:
     channel = -1
@@ -22,7 +19,10 @@ class Shocker:
         print("Turning off channel %s" % self.channel)
         self.led.on()
 
+    def async_pulse(self, seconds):
+        Thread(target=lambda:self.pulse(seconds)).start()
+
     def pulse(self, seconds=2):
-        print("Loop status: " + ("Running" if loop.is_running else "Closed"))
         self.on()
-        loop.call_later(seconds, self.off)
+        sleep(seconds)
+        self.off()
