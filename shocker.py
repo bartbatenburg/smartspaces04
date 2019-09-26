@@ -14,9 +14,11 @@ class Shocker:
         self.led.on()
 
     def on(self):
+        print("Turning on channel %s" % self.channel)
         self.led.off()
 
     def off(self):
+        print("Turning off channel %s" % self.channel)
         self.led.on()
 
     def pulse(self, seconds=2):
