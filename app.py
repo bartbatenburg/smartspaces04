@@ -8,7 +8,7 @@ channels = {
 }
 
 
-@app.route('/gpio/pulse/<channel>')
+@app.route('/gpio/<channel>/pulse')
 def pulse_action(channel):
     shocker = channels[channel]
     if shocker is None:
@@ -21,6 +21,26 @@ def pulse_action(channel):
         duration = float(duration)
 
     shocker.async_pulse(duration)
+    return '{"status":"okay"}'
+
+
+@app.route('/gpio/<channel>/on')
+def on_action(channel):
+    shocker = channels[channel]
+    if shocker is None:
+        return '{"error":"shocker not found"}'
+
+    shocker.on()
+    return '{"status":"okay"}'
+
+
+@app.route('/gpio/<channel>/off')
+def off_action(channel):
+    shocker = channels[channel]
+    if shocker is None:
+        return '{"error":"shocker not found"}'
+
+    shocker.off()
     return '{"status":"okay"}'
 
 
