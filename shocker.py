@@ -1,5 +1,5 @@
 from gpiozero import LED
-from asyncio import get_running_loop
+from asyncio import get_event_loop
 
 class Shocker:
     channel = -1
@@ -20,4 +20,4 @@ class Shocker:
 
     def pulse(self, seconds=2):
         self.on()
-        get_running_loop().call_later(seconds, self.off)
+        get_event_loop().call_later(seconds, self.off)
