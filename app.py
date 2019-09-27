@@ -77,6 +77,7 @@ def status_action(channel):
 def detection_on_action():
     global run_detection
     run_detection = True
+    return '{"status":"okay"}'
 
 
 @app.route('/detection/off')
@@ -84,6 +85,7 @@ def detection_on_action():
 def detection_off_action():
     global run_detection
     run_detection = False
+    return '{"status":"okay"}'
 
 
 @app.route('/detection')
