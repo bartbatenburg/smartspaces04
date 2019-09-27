@@ -50,6 +50,6 @@ if __name__ == '__main__':
     while True:
         sensor1.update()
         sensor2.update()
-        print("X1=%d, Y1=%d, Z1=%d" % (sensor1.x, sensor1.y, sensor1.z))
-        print("X2=%d, Y2=%d, Z2=%d" % (sensor2.x, sensor2.y, sensor2.z))
+        print("X1=%f, Y1=%f, Z1=%f" % (sensor1.x, sensor1.y, sensor1.z))
+        print("X2=%f, Y2=%f, Z2=%f" % (sensor2.x, sensor2.y, sensor2.z))
         sleep(0.25)
