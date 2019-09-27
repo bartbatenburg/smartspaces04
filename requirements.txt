@@ -1,4 +1,6 @@
 asyncio
 flask
+flask-cors
 gpiozero
+smbus
 RPIO

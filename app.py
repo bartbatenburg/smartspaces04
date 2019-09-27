@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from sensor import Sensor
 from shocker import Shocker
 from threading import Thread
@@ -8,6 +9,9 @@ app = Flask(
     __name__,
     static_url_path='', static_folder='static/'
 )
+cors=CORS(app)
+app.config["CORS_HEADERS"]="Content-Type"
+
 channels = {
     '1': Shocker(14),
     '2': Shocker(15)
@@ -20,6 +24,7 @@ run_detection = True
 
 
 @app.route('/gpio/<channel>/pulse')
+@cross_origin()
 def pulse_action(channel):
     shocker = channels[channel]
     if shocker is None:
@@ -36,6 +41,7 @@ def pulse_action(channel):
 
 
 @app.route('/gpio/<channel>/on')
+@cross_origin()
 def on_action(channel):
     shocker = channels[channel]
     if shocker is None:
@@ -46,6 +52,7 @@ def on_action(channel):
 
 
 @app.route('/gpio/<channel>/off')
+@cross_origin()
 def off_action(channel):
     shocker = channels[channel]
     if shocker is None:
@@ -56,6 +63,7 @@ def off_action(channel):
 
 
 @app.route('/gpio/<channel>')
+@cross_origin()
 def status_action(channel):
     shocker = channels[channel]
     if shocker is None:
@@ -65,18 +73,21 @@ def status_action(channel):
 
 
 @app.route('/detection/on')
+@cross_origin()
 def detection_on_action():
     global run_detection
     run_detection = True
 
 
 @app.route('/detection/off')
+@cross_origin()
 def detection_off_action():
     global run_detection
     run_detection = False
 
 
 @app.route('/detection')
+@cross_origin()
 def detection_status_action():
     global run_detection
     return '{"status":%s}' % ("true" if run_detection else "false")
