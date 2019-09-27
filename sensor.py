@@ -39,7 +39,7 @@ class Sensor:
         value = ((high << 8) | low)
         if value > 32768:
             value = value - 65536
-        return value
+        return value / 16384.0
 
 
 if __name__ == '__main__':
