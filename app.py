@@ -69,10 +69,11 @@ def check_loop():
         z2 = abs(sensors[1].z)
 
         if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[0].x > 0.4:
-            print("SHOCK")
+            channels['1'].on()
+            channels['2'].on()
         else:
-            print("NO SHOCK (X1=%f, Z1=%f, X2=%f, Z2=%f)" % (
-                sensors[0].x, sensors[0].z, sensors[1].x, sensors[1].z))
+            channels['1'].off()
+            channels['2'].off()
 
         sleep(0.5)
 
