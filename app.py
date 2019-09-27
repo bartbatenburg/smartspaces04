@@ -66,6 +66,8 @@ def check_loop():
     while True:
         if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[1].x < -0.4:
             print("SHOCK")
+        else:
+            print("NO SHOCK")
         sleep(0.5)
 
 
