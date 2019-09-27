@@ -1,16 +1,17 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
+
+from detection import detection_loop, status, halt, resume
 from sensor import Sensor
 from shocker import Shocker
 from threading import Thread
-from time import sleep
 
 app = Flask(
     __name__,
     static_url_path='', static_folder='static/'
 )
-cors=CORS(app)
-app.config["CORS_HEADERS"]="Content-Type"
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 
 channels = {
     '1': Shocker(14),
@@ -75,49 +76,25 @@ def status_action(channel):
 @app.route('/detection/on')
 @cross_origin()
 def detection_on_action():
-    global run_detection
-    run_detection = True
+    resume()
     return '{"status":"okay"}'
 
 
 @app.route('/detection/off')
 @cross_origin()
 def detection_off_action():
-    global run_detection
-    run_detection = False
+    halt()
     return '{"status":"okay"}'
 
 
 @app.route('/detection')
 @cross_origin()
 def detection_status_action():
-    global run_detection
-    return '{"status":%s}' % ("true" if run_detection else "false")
+    return '{"status":%s}' % ("true" if status() else "false")
 
-
-def check_loop():
-    global run_detection
-    while True:
-        if run_detection:
-            sensors[0].update()
-            sensors[1].update()
-
-            x2 = abs(sensors[1].x)
-            z2 = abs(sensors[1].z)
-
-            if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[0].x > 0.4:
-                channels['1'].on()
-                channels['2'].on()
-            else:
-                channels['1'].off()
-                channels['2'].off()
-
-        sleep(0.5)
-
-
-Thread(target=check_loop).start()
 
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0', port=80
     )
+    Thread(target=detection_loop).start()
