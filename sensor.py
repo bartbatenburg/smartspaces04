@@ -1,3 +1,4 @@
+from __future__ import division
 from smbus import SMBus
 from time import sleep
 
