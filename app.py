@@ -4,7 +4,10 @@ from shocker import Shocker
 from threading import Thread
 from time import sleep
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='', static_folder='static/'
+)
 channels = {
     '1': Shocker(14),
     '2': Shocker(15)
@@ -103,6 +106,5 @@ Thread(target=check_loop).start()
 
 if __name__ == '__main__':
     app.run(
-        host='0.0.0.0', port=80,
-        static_url_path='', static_folder='static/'
+        host='0.0.0.0', port=80
     )
