@@ -61,11 +61,13 @@ def status_action(channel):
 
 
 def check_loop():
-    x2 = abs(sensors[1].x)
-    z2 = abs(sensors[1].z)
     while True:
         sensors[0].update()
         sensors[1].update()
+
+        x2 = abs(sensors[1].x)
+        z2 = abs(sensors[1].z)
+
         if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[0].x > 0.4:
             print("SHOCK")
         else:
