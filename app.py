@@ -9,10 +9,10 @@ channels = {
     '1': Shocker(14),
     '2': Shocker(15)
 }
-sensors = {
-    1: Sensor(0, 0x68),
-    2: Sensor(1, 0x68)
-}
+sensors = [
+    Sensor(0, 0x68),
+    Sensor(1, 0x68)
+]
 
 
 @app.route('/gpio/<channel>/pulse')
@@ -61,10 +61,12 @@ def status_action(channel):
 
 
 def check_loop():
-    x2 = abs(sensors[2].x)
-    z2 = abs(sensors[2].z)
+    x2 = abs(sensors[1].x)
+    z2 = abs(sensors[1].z)
     while True:
-        if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[1].x < -0.4:
+        sensors[0].update()
+        sensors[1].update()
+        if ((x2 > 0.5 and z2 > 0.7) or (z2 > 0.5 and x2 > 0.7)) and sensors[0].x < -0.4:
             print("SHOCK")
         else:
             print("NO SHOCK")
